@@ -1,0 +1,21 @@
+[
+    {
+        "id":1,
+        "name": "milk",
+        "productTags": [
+            "Mimosa",
+            "BEM ESSENCIAL",
+            "leite",
+            "meio-gordo"
+        ]
+    },
+    {
+        "id":2,
+        "name": "juice",
+        "productTags": [
+            "bongo",
+            "tutti-fruti",
+            "fruta"
+        ]
+    }
+]
