@@ -1,0 +1,19 @@
+{
+  "name": "easyshopping",
+  "version": "1.0.0",
+  "description": "A voice controlled shopping APP that utilizes image recognition to provide machine learning based results.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndpratas/EasyShopping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndpratas/EasyShopping/issues"
+  },
+  "homepage": "https://github.com/ndpratas/EasyShopping#readme"
+}
