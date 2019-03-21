@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ndpratas/EasyShopping/issues"
   },
-  "homepage": "https://github.com/ndpratas/EasyShopping#readme"
+  "homepage": "https://github.com/ndpratas/EasyShopping#readme",
+  "dependencies": {
+    "json-query": "^2.2.2",
+    "string-similarity": "^3.0.0"
+  }
 }
