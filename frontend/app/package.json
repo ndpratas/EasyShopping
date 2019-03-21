@@ -1,11 +1,15 @@
 {
-  "name": "app",
+  "name": "easy-shopping",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "jquery": "^3.3.1",
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-speech": "^0.3.2",
+    "react-speech-recognition": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
