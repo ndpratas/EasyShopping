@@ -17,7 +17,7 @@ const options = {
 const myHeaders = new Headers();
 
 const postConfig = {
-  method: 'GET',
+  method: 'POST',
   headers: myHeaders,
   mode: 'cors',
   cache: 'default'
