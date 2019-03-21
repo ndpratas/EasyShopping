@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import SpeechRecognition from 'react-speech-recognition'
+import Speech from 'react-speech';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import $ from "jquery";
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -10,6 +13,7 @@ const propTypes = {
   startListening: PropTypes.func
 }
 
+// SpeechRecognition options
 const options = {
   autoStart: false
 }
@@ -27,19 +31,21 @@ class Dictaphone extends Component {
   constructor() {
     super();
     this.state = {
-      latestText: ''
+      latestText: '',
+      numOfProducts: 0
     };
   }
+
   postSpeechText = (text) => {
     let { latestText } = this.state;
 
-    console.log('postSpeechText');
     if (latestText !== text) {
       // TODO: add enpoint URL
       fetch('', postConfig)
-        .then(function (response) {
-          console.log(response);
+        .then((response) => {
           latestText = text;
+          // TODO: check how to obtain the number of products
+          this.setState({ numOfProducts: response.length });
           return response;
         })
         .then((error) => {
@@ -49,8 +55,13 @@ class Dictaphone extends Component {
     }
   }
 
+  playSpeech = () => {
+    $(ReactDOM.findDOMNode(this).getElementsByClassName('rs-play')[0]).click();
+  }
+
   render() {
     const { transcript, resetTranscript, browserSupportsSpeechRecognition, startListening } = this.props
+    const { numOfProducts } = this.state;
 
     if (!browserSupportsSpeechRecognition) {
       return null
@@ -58,10 +69,20 @@ class Dictaphone extends Component {
 
     return (
       <div>
-        <button onClick={startListening}>Start</button>
-        <button onClick={resetTranscript}>Reset</button>
-        <span>{transcript}</span>
+        <div>
+          <button onClick={startListening}>Start</button>
+          <button onClick={resetTranscript}>Reset</button>
+        </div>
+        <div>{transcript}</div>
         {this.postSpeechText(transcript)}
+        <div>
+          <Speech
+            voice="Samantha"
+            autoStart={true}
+            textAsButton={true}
+            displayText="Hello"
+            text={`We have found ${numOfProducts} products`} />
+        </div>
       </div>
     )
   }
