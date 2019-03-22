@@ -38,7 +38,7 @@ class ImageUploader extends React.Component {
                 >
                     <i className="fas fa-camera"></i>
                     <span> </span>
-                    <label htmlFor="uploadImage">Search by image</label>
+                    <label htmlFor="uploadImage" style={{cursor:'pointer'}}>Search by image</label>
                 </button>
             </div>
         )
