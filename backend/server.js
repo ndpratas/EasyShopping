@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8001;
 const stringSimilarity = require('string-similarity');
 const fs = require('fs');
+var cors = require('cors')
+
+app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
@@ -18,7 +21,7 @@ app.get('/search',(req, res) => {
     const tags = req.query.tag.split(",");
     const searchResult = scoreResults(searchInProducts(tags))
         .sort((a, b) => b.score - a.score);
-    res.send(searchResult);
+    res.json(searchResult);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/ndpratas/EasyShopping#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "json-query": "^2.2.2",
     "string-similarity": "^3.0.0"
   }
