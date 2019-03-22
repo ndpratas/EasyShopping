@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import SpeechRecognition from './speech-to-text/dictaphone';
 import NavView from './navigation/navview';
 import HomePage from './home-page';
 import 'semantic-ui-css/semantic.min.css';
@@ -12,7 +11,6 @@ class App extends Component {
         <NavView>
           <HomePage />
         </NavView>
-        {/* <SpeechRecognition /> */}
       </div>
     );
   }
