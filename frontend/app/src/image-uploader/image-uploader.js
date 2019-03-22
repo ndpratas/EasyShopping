@@ -8,26 +8,27 @@ class ImageUploader extends React.Component {
     }
 
     handleChange(e) {
-        const { onResultsFound } = this.props;
-        if (!e.target.files[0]) {
-            return
-        }
-        this.state = {file: e.target.files[0]}
-        console.log('image uploader: ', this.state)
-        this.fileToBase64(this.state.file)
-          .then(
-            data => fetch('http://localhost:8001/tag-recognition/', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'text/plain',
-                },
-                body: data
-            }
-          )
-          .then(response => response.json())
-          .then(data => onResultsFound(data)))
-    }
+      const { onResultsFound } = this.props;
+
+      if (!e.target.files[0]) {
+          return
+      }
+      this.state = {file: e.target.files[0]}
+      console.log('image uploader: ', this.state)
+      this.fileToBase64(this.state.file).then(
+          data => fetch('http://localhost:8001/tag-recognition/', {
+              method: 'POST',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'text/plain',
+              },
+              body: data
+            })
+            .then(response => response.json())
+            .then(data => onResultsFound(data)))
+
+  }
+
 
     fileToBase64(file) {
         return new Promise((resolve, reject) => {
@@ -52,9 +53,9 @@ class ImageUploader extends React.Component {
                     <span> </span>
                     <label htmlFor="uploadImage" style={{cursor:'pointer'}}>Search by image</label>
                 </button>
-                {/* {this.state.data.map( ({name}) =>
+                {this.state.data.map( ({name}) =>
                     <div>{name}</div>
-                )} */}
+                )}
             </div>
         )
     }
