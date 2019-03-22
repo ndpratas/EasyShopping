@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
+import mockPostSpeechText from '../mockPostSpeechText';
+
 const propTypes = {
   // Props injected by SpeechRecognition
   transcript: PropTypes.string,
@@ -15,7 +17,8 @@ const propTypes = {
 
 // SpeechRecognition options
 const options = {
-  autoStart: false
+  autoStart: false,
+  continuous: false,
 }
 
 const myHeaders = new Headers();
@@ -36,20 +39,30 @@ class Dictaphone extends Component {
     };
   }
 
+  componentDidMount = () => {
+    // const {startListening} = this.props;
+    // window.addEventListener('load', startListening);
+  }
+
   postSpeechText = (text) => {
     let { latestText } = this.state;
+    const { finalTranscript, listening } = this.props;
 
-    if (latestText !== text) {
-      // TODO: add enpoint URL
-      fetch('', postConfig)
+    if (!listening && finalTranscript !== '' && latestText !== text) {
+      console.log([listening, finalTranscript, latestText, text]);
+      // TODO: add enpoint URL and uncomment
+      // fetch('', postConfig)
+      mockPostSpeechText()
         .then((response) => {
+          console.log(response);
           latestText = text;
           // TODO: check how to obtain the number of products
-          this.setState({ numOfProducts: response.length });
+          this.setState({ numOfProducts: response.length, latestText: text });
+          this.playSpeech();
           return response;
         })
         .then((error) => {
-          latestText = text;
+          this.setState({ latestText: text });
           console.log(error);
         });
     }
@@ -60,12 +73,14 @@ class Dictaphone extends Component {
   }
 
   render() {
-    const { transcript, resetTranscript, browserSupportsSpeechRecognition, startListening } = this.props
-    const { numOfProducts } = this.state;
+    const { finalTranscript, resetTranscript, browserSupportsSpeechRecognition, startListening } = this.props
+    const { numOfProducts, latestText } = this.state;
 
     if (!browserSupportsSpeechRecognition) {
       return null
     }
+
+    console.log(['state --> ', latestText, numOfProducts]);
 
     return (
       <div>
@@ -73,8 +88,8 @@ class Dictaphone extends Component {
           <button onClick={startListening}>Start</button>
           <button onClick={resetTranscript}>Reset</button>
         </div>
-        <div>{transcript}</div>
-        {this.postSpeechText(transcript)}
+        <div>{finalTranscript}</div>
+        {this.postSpeechText(finalTranscript)}
         <div>
           <Speech
             voice="Samantha"

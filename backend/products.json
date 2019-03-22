@@ -1,12 +1,22 @@
 [
     {
+        "id":0,
+        "name": "milk light",
+        "productTags": [
+            "Mimosa",
+            "BEM ESSENCIAL",
+            "leite",
+            "magro"
+        ]
+    },
+    {
         "id":1,
         "name": "milk",
         "productTags": [
             "Mimosa",
             "BEM ESSENCIAL",
             "leite",
-            "meio-gordo"
+            "meio gordo"
         ]
     },
     {
@@ -16,6 +26,24 @@
             "bongo",
             "tutti-fruti",
             "fruta"
+        ]
+    },
+    {
+        "id":3,
+        "name": "beer",
+        "productTags": [
+            "sagres",
+            "boemia",
+            "alchool"
+        ]
+    },
+    {
+        "id":4,
+        "name": "nestum",
+        "productTags": [
+            "chocolat",
+            "nestle",
+            "cereals"
         ]
     }
 ]

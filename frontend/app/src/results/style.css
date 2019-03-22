@@ -1,0 +1,33 @@
+.product-cell {
+  align-items: center;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.product-cell p {
+  text-transform: uppercase;
+}
+
+.product-cell button {
+  border: none;
+  width: 90%;
+  background-color: #0066FF;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 4px 0px -1px hsla(221, 92%, 36%, 1);
+  cursor: pointer;
+}
+
+.product-cell button:focus {
+  outline: 0;
+}
+
+.product-cell button:active {
+  box-shadow: 0 0 0 0;
+}

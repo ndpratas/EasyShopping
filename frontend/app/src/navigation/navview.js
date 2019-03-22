@@ -5,7 +5,7 @@ import Logo from '../navigation/logo';
 import './navview.style.css';
 
 const navbar = ({children}) => (
-  <React.Fragment>
+  <div>
     <div id="navview">
       <Logo />
       <CartWidget />
@@ -14,7 +14,7 @@ const navbar = ({children}) => (
     <section style={{flex: 1}}>
       {children}
     </section>
-  </React.Fragment>
+  </div>
 );
 
 export default navbar;
