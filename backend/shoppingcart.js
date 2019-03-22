@@ -25,18 +25,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post('/shoppingcart', (req, res) => {
-    const Items = req.body;
+    const items = req.body;
     var shoppingCart = JSON.parse(fs.readFileSync(shoppingcartDB,'utf8'));
-    shoppingCart = addItemsToShoppingCart(shoppingCart, Items);
+    shoppingCart = addItemsToShoppingCart(shoppingCart, items);
     fs.writeFileSync(shoppingcartDB, JSON.stringify(shoppingCart) , 'utf8');
     res.send("Saved!");
 });
 
 
 app.delete('/shoppingcart', (req, res) => {
-    const Items = req.body;
+    const items = req.body;
     var shoppingCart = JSON.parse(fs.readFileSync(shoppingcartDB,'utf8'));
-    shoppingCart = removeItemsFromShoppingCart(shoppingCart, Items);
+    shoppingCart = removeItemsFromShoppingCart(shoppingCart, items);
     fs.writeFileSync(shoppingcartDB, JSON.stringify(shoppingCart) , 'utf8');
     res.send("Removed!");
 });
