@@ -61,8 +61,9 @@ async function extractTagsFromImage(imageBase64) {
     const fileName = 'image.jpeg';
     fs.writeFileSync(fileName, decodeBase64Image(imageBase64).data, console.log);    
     const client = new vision.ImageAnnotatorClient();
-    const [result] = await client.textDetection(fileName);
-    const detections = result.textAnnotations;
+    const [resultText] = await client.textDetection(fileName);
+    const detections = resultText.textAnnotations;
+    // const [resultLabels] = await client.labelDetection(fileName);
     return detections.length && detections[0].description;
 }
 

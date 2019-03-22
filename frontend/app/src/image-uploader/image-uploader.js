@@ -47,8 +47,7 @@ class ImageUploader extends React.Component {
                        onChange={(e) => this.handleChange(e)}></input>
                 <button className="search-button"
                         type="submit"
-                        htmlFor="uploadImage"
-                >
+                        htmlFor="uploadImage">
                     <i className="fas fa-camera"></i>
                     <span> </span>
                     <label htmlFor="uploadImage" style={{cursor:'pointer'}}>Search by image</label>
