@@ -31,7 +31,7 @@ app.get('/search',(req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 function searchInProducts(tags) {
-    const productList = JSON.parse(fs.readFileSync('products.json', 'utf8'));
+    const productList = JSON.parse(fs.readFileSync('products-db.json', 'utf8'));
     let result = [];
     productList.forEach(function(product) {
         for (let tag of tags) {
@@ -46,7 +46,7 @@ function searchInProducts(tags) {
 }
 
 function scoreResults(results) {
-    const pastPurchases = JSON.parse(fs.readFileSync('purchases.json', 'utf8'));
+    const pastPurchases = JSON.parse(fs.readFileSync('purchases-db.json', 'utf8'));
     results.forEach(result =>
         result.score = pastPurchases.reduce((accOut, purchase) => 
             accOut + purchase.products.reduce((accIn, productId) => 
