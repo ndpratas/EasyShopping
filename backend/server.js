@@ -1,13 +1,20 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8001;
 const stringSimilarity = require('string-similarity');
+const vision = require('@google-cloud/vision');
 const fs = require('fs');
+const bodyParser = require('body-parser');
+var cors = require('cors')
+
+app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/tag-recognition', async(req, res) => {
-    const result = await extractTagsFromImage();
+const parser = bodyParser.text({ type: 'text/plain' });
+
+app.post('/tag-recognition', parser, async(req, res) => {
+    const result = await extractTagsFromImage(req.body);
     const tags = result.split("\n");
     const searchResult = scoreResults(searchInProducts(tags))
         .sort((a, b) => b.score - a.score);
@@ -18,7 +25,7 @@ app.get('/search',(req, res) => {
     const tags = req.query.tag.split(",");
     const searchResult = scoreResults(searchInProducts(tags))
         .sort((a, b) => b.score - a.score);
-    res.send(searchResult);
+    res.json(searchResult);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -29,7 +36,6 @@ function searchInProducts(tags) {
     productList.forEach(function(product) {
         for (let tag of tags) {
             const bestMatch = stringSimilarity.findBestMatch(tag,product.productTags);
-            console.log(bestMatch.bestMatch.rating);
             if (bestMatch.bestMatch.rating > 0.5){
                 result.push(product);
                 break;
@@ -51,12 +57,23 @@ function scoreResults(results) {
     return results;
 }
 
-async function extractTagsFromImage() {
-    const vision = require('@google-cloud/vision');
+async function extractTagsFromImage(imageBase64) {
+    const fileName = 'image.jpeg';
+    fs.writeFileSync(fileName, decodeBase64Image(imageBase64).data, console.log);    
     const client = new vision.ImageAnnotatorClient();
-    const fileName = 'http://www.hipersuper.pt/wp-content/uploads/2018/01/nsl-498x1024.jpg'
-    //const fileName = 'milk.jpeg';
     const [result] = await client.textDetection(fileName);
     const detections = result.textAnnotations;
-    return detections[0].description;
-};
+    return detections.length && detections[0].description;
+}
+
+function decodeBase64Image(dataString) {
+    console.log(dataString);
+    const matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    const response = {};
+    if (matches.length !== 3) {
+      return new Error('Invalid input string');
+    }
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+    return response;
+  }

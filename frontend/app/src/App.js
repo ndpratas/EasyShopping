@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import SpeechRecognition from './speech-to-text/Dictaphone';
 import NavView from './navigation/navview';
 import HomePage from './home-page';
 import ResultsPage from './results';
