@@ -11,7 +11,7 @@ class App extends Component {
       <div style={{backgroundColor: "white", display: "flex", flexDirection: "column", height: "100%"}}>
         <Navbar />
         <HomePage />
-        {/* <SpeechRecognition /> */}
+        <SpeechRecognition />
       </div>
     );
   }
