@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import SpeechRecognition from './speech-to-text/Dictaphone';
+import SpeechRecognition from './speech-to-text/dictaphone';
 import Navbar from './navigation/navbar';
 import HomePage from './home-page';
 import 'semantic-ui-css/semantic.min.css';
