@@ -21,15 +21,6 @@ const options = {
   continuous: false,
 }
 
-const myHeaders = new Headers();
-
-const postConfig = {
-  method: 'POST',
-  headers: myHeaders,
-  mode: 'cors',
-  cache: 'default'
-};
-
 class Dictaphone extends Component {
   constructor() {
     super();
@@ -39,24 +30,14 @@ class Dictaphone extends Component {
     };
   }
 
-  componentDidMount = () => {
-    // const {startListening} = this.props;
-    // window.addEventListener('load', startListening);
-  }
-
   postSpeechText = (text) => {
     let { latestText } = this.state;
     const { finalTranscript, listening } = this.props;
 
     if (!listening && finalTranscript !== '' && latestText !== text) {
-      console.log([listening, finalTranscript, latestText, text]);
-      // TODO: add enpoint URL and uncomment
-      // fetch('', postConfig)
-      mockPostSpeechText()
+      fetch('http://localhost:8001/search?tag=' + text.replace(' ', ','))
+        .then(res => res.json())
         .then((response) => {
-          console.log(response);
-          latestText = text;
-          // TODO: check how to obtain the number of products
           this.setState({ numOfProducts: response.length, latestText: text });
           this.playSpeech();
           return response;
