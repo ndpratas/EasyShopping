@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 
-import mockPostSpeechText from '../mockPostSpeechText';
-
 const propTypes = {
   // Props injected by SpeechRecognition
   transcript: PropTypes.string,
@@ -32,19 +30,22 @@ class Dictaphone extends Component {
 
   postSpeechText = (text) => {
     let { latestText } = this.state;
-    const { finalTranscript, listening } = this.props;
+    const { finalTranscript, listening, onResultsFound } = this.props;
+    console.log(['onResultsFound', onResultsFound])
 
     if (!listening && finalTranscript !== '' && latestText !== text) {
       fetch('http://localhost:8001/search?tag=' + text.replace(' ', ','))
         .then(res => res.json())
-        .then((response) => {
-          this.setState({ numOfProducts: response.length, latestText: text });
+        .then((results) => {
+          onResultsFound(results);
+          this.setState({ numOfProducts: results.length, latestText: text });
           this.playSpeech();
-          return response;
+          return results;
         })
-        .then((error) => {
-          this.setState({ latestText: text });
+        .catch((error) => {
           console.log(error);
+          this.setState({ latestText: text });
+          onResultsFound([]);
         });
     }
   }
@@ -69,6 +70,7 @@ class Dictaphone extends Component {
           <button onClick={startListening}>Start</button>
           <button onClick={resetTranscript}>Reset</button>
         </div>
+        <div>Searching...</div>
         <div>{finalTranscript}</div>
         {this.postSpeechText(finalTranscript)}
         <div>

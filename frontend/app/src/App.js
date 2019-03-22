@@ -15,8 +15,6 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route exact path="/search/results" render={() => <ResultsPage results={[0,1,3,4,5,6,7]} />} />
           </NavView>
-          {/* <SpeechRecognition /> */}
-          <SpeechRecognition />
         </div>
       </Router>
     );
