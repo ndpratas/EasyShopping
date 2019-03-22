@@ -4,7 +4,7 @@ import './style.css';
 class ImageUploader extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {file: ''};
+        this.state = {file: '', fileSent: false};
     }
 
     handleChange(e) {
@@ -14,7 +14,14 @@ class ImageUploader extends React.Component {
         this.state = {file: e.target.files[0]}
         console.log('image uploader: ', this.state)
         this.fileToBase64(this.state.file).then(
-            data => console.log(data));
+            data => fetch('https://mywebsite.com/endpoint/', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'text/plain',
+                },
+                body: data
+            }).then());
     }
 
     fileToBase64(file) {
