@@ -1,22 +1,22 @@
 [
     {
         "id":0,
-        "name": "milk light",
+        "name": "skimmed milk",
         "productTags": [
             "Mimosa",
             "BEM ESSENCIAL",
-            "leite",
-            "magro"
+            "milk",
+            "skimmed"
         ]
     },
     {
         "id":1,
-        "name": "milk",
+        "name": "fat milk",
         "productTags": [
             "Mimosa",
             "BEM ESSENCIAL",
-            "leite",
-            "meio gordo"
+            "milk",
+            "fat"
         ]
     },
     {
