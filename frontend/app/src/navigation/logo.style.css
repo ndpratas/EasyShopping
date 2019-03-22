@@ -1,0 +1,12 @@
+#logo {
+  display: flex;
+  flex-direction: row;
+}
+
+#logo i {
+  color: #0066FF;
+}
+
+#logo h1 {
+  margin: 0;
+}

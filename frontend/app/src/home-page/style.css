@@ -1,6 +1,4 @@
 .search-button {
-  /* font-weight: 400; */
-  /* text-transform: uppercase; */
   border: none;
   padding: 20px 30px;
   font-size: 20px;
@@ -24,7 +22,6 @@
 }
 
 #user-thumbnail {
-  /* box-shadow: #3c3c3c38 0px 0px 2px 25px; */
   width: 200px;
   height: 200px;
   border-radius: 100%;
