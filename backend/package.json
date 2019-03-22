@@ -19,6 +19,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "body-parser": "^1.15.2",
     "json-query": "^2.2.2",
     "string-similarity": "^3.0.0"
   }
