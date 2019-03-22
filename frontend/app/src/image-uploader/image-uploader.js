@@ -4,7 +4,7 @@ import './style.css';
 class ImageUploader extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {file: '', fileSent: false};
+        this.state = {file: '', data: []};
     }
 
     handleChange(e) {
@@ -14,14 +14,15 @@ class ImageUploader extends React.Component {
         this.state = {file: e.target.files[0]}
         console.log('image uploader: ', this.state)
         this.fileToBase64(this.state.file).then(
-            data => fetch('https://mywebsite.com/endpoint/', {
+            data => fetch('http://localhost:8001/tag-recognition/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'text/plain',
                 },
                 body: data
-            }).then());
+            }).then(response => response.json())
+            .then(data => this.setState({ data })))
     }
 
     fileToBase64(file) {
@@ -47,6 +48,9 @@ class ImageUploader extends React.Component {
                     <span> </span>
                     <label htmlFor="uploadImage" style={{cursor:'pointer'}}>Search by image</label>
                 </button>
+                {this.state.data.map( ({name}) =>
+                    <div>{name}</div>
+                )}
             </div>
         )
     }

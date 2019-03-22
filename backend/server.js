@@ -11,7 +11,7 @@ app.use(cors())
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-const parser = bodyParser.text({ type: 'text/plain' });
+const parser = bodyParser.text({ type: 'text/plain' ,limit: '50mb'});
 
 app.post('/tag-recognition', parser, async(req, res) => {
     const result = await extractTagsFromImage(req.body);
@@ -67,7 +67,6 @@ async function extractTagsFromImage(imageBase64) {
 }
 
 function decodeBase64Image(dataString) {
-    console.log(dataString);
     const matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
     const response = {};
     if (matches.length !== 3) {
