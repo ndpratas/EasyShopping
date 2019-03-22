@@ -2,11 +2,11 @@ import React from 'react';
 import './style.css';
 
 const renderResults = (results) => {
-  return results.map((result, key) => (
-      <section className="product-cell" key={key}>
-        <img src="http://clipart-library.com/img/1731148.png" style={{width: "200px", height: "200px"}}></img>
-        <h1>2.99€</h1>
-        <p>Milk Mimosa Calcium+</p>
+  return results.map((result) => (
+      <section className="product-cell" key={result.id}>
+        <img src={result.thumbnail} style={{width: "200px", height: "200px"}}></img>
+        <h1>{`${result.price}€`}</h1>
+        <p>{result.name}</p>
         <button><i class="fas fa-shopping-cart"></i><span> </span>Add to cart</button>
       </section>
     )

@@ -2,6 +2,8 @@
     {
         "id":0,
         "name": "skimmed milk",
+        "price": 1.27,
+        "thumbnail": "http://clipart-library.com/img/1731148.png",
         "productTags": [
             "Mimosa",
             "BEM ESSENCIAL",
@@ -12,6 +14,8 @@
     {
         "id":1,
         "name": "fat milk",
+        "price": 2.99,
+        "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/618E6G79wJL._SL1500_.jpg",
         "productTags": [
             "Mimosa",
             "BEM ESSENCIAL",
@@ -22,6 +26,8 @@
     {
         "id":2,
         "name": "juice",
+        "price": 2.10,
+        "thumbnail": "http://clipart-library.com/img/1731148.png",
         "productTags": [
             "bongo",
             "tutti-fruti",
@@ -31,6 +37,8 @@
     {
         "id":3,
         "name": "beer",
+        "price": 1.99,
+        "thumbnail": "http://clipart-library.com/img/1731148.png",
         "productTags": [
             "sagres",
             "boemia",
@@ -41,6 +49,8 @@
     {
         "id":4,
         "name": "nestum",
+        "price": 4.27,
+        "thumbnail": "http://clipart-library.com/img/1731148.png",
         "productTags": [
             "chocolat",
             "nestle",

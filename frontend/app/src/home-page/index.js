@@ -11,7 +11,6 @@ const homePage = ({onResultsFound, history}) => {
     }
   };
 
-  const [results, setResults] = useState([]);
   return (
     <div id="home-page">
       <section id="main-area">
