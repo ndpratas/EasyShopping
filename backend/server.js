@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000
+const port = 3000;
 const stringSimilarity = require('string-similarity');
 const fs = require('fs');
 
@@ -9,25 +9,47 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.get('/tag-recognition', async(req, res) => {
     const result = await extractTagsFromImage();
     const tags = result.split("\n");
-    res.send(JSON.stringify({productTags:tags.filter(v=>v!='')}));
+    const searchResult = scoreResults(searchInProducts(tags))
+        .sort((a, b) => b.score - a.score);
+    res.send(searchResult);
 });
 
 app.get('/search',(req, res) => {
-    const tags = req.query.tag;
-    const productList = JSON.parse(fs.readFileSync('products.json','utf8'));
-    let result = [];
-    productList.forEach(function(product){
-        const similarityQF = stringSimilarity.compareTwoStrings(tags,product.productTags.toString());
-        console.log(similarityQF);
-        //TODO: review this alghoritm if the number of tags is diferent of tag query parameters
-        if(similarityQF>0.1) {
-            result.push(product);
-        }
-    });
-    res.send(result);
+    const tags = req.query.tag.split(",");
+    const searchResult = scoreResults(searchInProducts(tags))
+        .sort((a, b) => b.score - a.score);
+    res.send(searchResult);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+function searchInProducts(tags) {
+    const productList = JSON.parse(fs.readFileSync('products.json', 'utf8'));
+    let result = [];
+    productList.forEach(function(product) {
+        for (let tag of tags) {
+            const bestMatch = stringSimilarity.findBestMatch(tag,product.productTags);
+            console.log(bestMatch.bestMatch.rating);
+            if (bestMatch.bestMatch.rating > 0.5){
+                result.push(product);
+                break;
+            }
+        };
+    });
+    return result;
+}
+
+function scoreResults(results) {
+    const pastPurchases = JSON.parse(fs.readFileSync('purchases.json', 'utf8'));
+    results.forEach(result =>
+        result.score = pastPurchases.reduce((accOut, purchase) => 
+            accOut + purchase.products.reduce((accIn, productId) => 
+                accIn + (productId === result.id ? 1 : 0)
+            , 0)
+        , 0)
+    );
+    return results;
+}
 
 async function extractTagsFromImage() {
     const vision = require('@google-cloud/vision');
@@ -37,4 +59,4 @@ async function extractTagsFromImage() {
     const [result] = await client.textDetection(fileName);
     const detections = result.textAnnotations;
     return detections[0].description;
-}
+};
