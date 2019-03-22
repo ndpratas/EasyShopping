@@ -6,11 +6,11 @@ import ReactDOM from 'react-dom';
 import $ from "jquery";
 
 const propTypes = {
-  // Props injected by SpeechRecognition
   transcript: PropTypes.string,
   resetTranscript: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool,
-  startListening: PropTypes.func
+  startListening: PropTypes.func,
+  stopListnening: PropTypes.func,
 }
 
 // SpeechRecognition options
@@ -48,6 +48,12 @@ class Dictaphone extends Component {
           onResultsFound([]);
         });
     }
+  }
+
+  componentWillUnmount() {
+    const { stopListening, resetTranscript } = this.props;
+    resetTranscript();
+    stopListening();
   }
 
   playSpeech = () => {
