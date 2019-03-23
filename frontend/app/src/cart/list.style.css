@@ -1,0 +1,21 @@
+#checkout {
+  border: none;
+  height: 50px;
+  width: 30%;
+  background-color: #0066FF;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 4px 0px -1px hsla(221, 92%, 36%, 1);
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#checkout:focus {
+  outline: 0;
+}
+
+#checkout:active {
+  box-shadow: 0 0 0 0;
+}

@@ -4,12 +4,11 @@ import CartWidget from '../cart/widget';
 import Logo from '../navigation/logo';
 import './navview.style.css';
 
-const navbar = ({children}) => (
+const navbar = ({numberOfItems, children}) => (
   <div>
     <div id="navview">
       <Logo />
-      <CartWidget />
-      {/* <UserThumbnail size="small" /> */}
+      <CartWidget numberOfItems={numberOfItems} />
     </div>
     <section style={{flex: 1}}>
       {children}
