@@ -40,12 +40,12 @@ class ImageUploader extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div className="search-button">
                 <input id="uploadImage"
                        className="fileInput"
                        type="file"
                        onChange={(e) => this.handleChange(e)}></input>
-                <button className="search-button"
+                <button
                         type="submit"
                         htmlFor="uploadImage">
                     <i className="fas fa-camera"></i>
