@@ -17,12 +17,11 @@
   },
   "homepage": "https://github.com/ndpratas/EasyShopping#readme",
   "dependencies": {
-    "@google-cloud/vision": "^0.25.0",
+    "@google-cloud/vision": "^0.12.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "json-query": "^2.2.2",
-    "string-similarity": "^3.0.0",
-    "@google-cloud/vision": "^0.12.0"
+    "string-similarity": "^3.0.0"
   }
 }
