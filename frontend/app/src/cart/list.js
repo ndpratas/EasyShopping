@@ -1,5 +1,6 @@
 import React from 'react';
 import './list.style.css';
+import { Link } from 'react-router-dom';
 
 const renderCartList = (products) => {
   return products.map(product => (
@@ -25,7 +26,7 @@ const sumProducts = (products) => {
   }, 0);
 }
 
-const list = ({products})  => (
+const list = ({products, history})  => (
   <React.Fragment>
     <div style={{display: "flex", padding: "20px 40px", flexDirection: "column"}}>
       <h1 style={{textTransform: "uppercase", marginLeft: "40px", paddingBottom: "20px"}}>Shopping cart</h1>
@@ -38,7 +39,7 @@ const list = ({products})  => (
         <h4 style={{margin: 0}}>Total:</h4>
         <h1 style={{margin: 0}}>{`${sumProducts(products)}€`}</h1>
       </div>
-      <button id="checkout">Checkout</button>
+      <button onClick={() => {history.push("/checkout")}} id="checkout">Checkout</button>
     </div>
   </React.Fragment>
 );

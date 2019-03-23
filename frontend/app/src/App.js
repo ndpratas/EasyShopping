@@ -4,6 +4,7 @@ import NavView from './navigation/navview';
 import HomePage from './home-page';
 import ResultsPage from './results';
 import CartList from './cart/list';
+import Checkout from './checkout';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -19,7 +20,8 @@ const App = () => {
         <NavView numberOfItems={cart && cart.length} >
             <Route exact path="/" component={(props) => <HomePage {...props} onResultsFound={setProductsFound} />} />
             <Route exact path="/search/results" render={() => <ResultsPage addToCart={addToCart} results={productsFound} />} />
-            <Route exact path="/cart/list" render={() => <CartList products={cart} />} />
+            <Route exact path="/cart/list" render={(props) => <CartList {...props} products={cart} />} />
+            <Route exact path="/checkout" render={() => <Checkout products={cart} />} />
         </NavView>
       </div>
     </Router>
