@@ -27,30 +27,32 @@
         "id":2,
         "name": "juice",
         "price": 2.10,
-        "thumbnail": "http://clipart-library.com/img/1731148.png",
+        "thumbnail": "https://i.ibb.co/GHDctgg/bongo.jpg",
         "productTags": [
             "bongo",
             "tutti-fruti",
-            "fruit"
+            "fruit",
+            "juice"
         ]
     },
     {
         "id":3,
         "name": "beer",
         "price": 1.99,
-        "thumbnail": "http://clipart-library.com/img/1731148.png",
+        "thumbnail": "https://i.ibb.co/Yk2hY1M/weissbier.jpg",
         "productTags": [
             "sagres",
             "boemia",
             "alchool",
-            "beer"
+            "beer",
+            "weissbier"
         ]
     },
     {
         "id":4,
         "name": "nestum",
         "price": 4.27,
-        "thumbnail": "http://clipart-library.com/img/1731148.png",
+        "thumbnail": "https://i.ibb.co/7bSV1XV/nestum.jpg",
         "productTags": [
             "chocolat",
             "nestle",
