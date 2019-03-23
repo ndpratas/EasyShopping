@@ -74,16 +74,10 @@ class Dictaphone extends Component {
 
     return (
       <div>
-        {/* <div>
-          <button onClick={startListening}>Start</button>
-          <button onClick={resetTranscript}>Reset</button>
-        </div> */}
         <div>
           <img alt="mic" src={mic} style={{ display: listening ? 'none' : ' block'}} onClick={startListening}/>
           <img alt="AudioVisualizer" src={audioWave} style={{ width: '200px', height: '90px', display: listening ? 'block' : ' none' }} />
-          {/* <div style={{ display: (listening && transcript !== '') ? 'block' : 'none'}}>Searching...</div> */}
         </div>
-        {/* <div>{finalTranscript}</div> */}
         {this.postSpeechText(finalTranscript)}
         <div>
           <Speech
